@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
     val input = "abba"
-    val result = LengthOfLongestSubstring().lengthOfLongestSubstring(input)
+    val result = DPAlgorithm.longestPalindrome("cdda")
     println("result $result")
 }
