@@ -15,4 +15,15 @@ class ReverseInteger {
     private fun outBound(x: Long): Boolean {
         return x < Int.MIN_VALUE || x > Int.MAX_VALUE
     }
+
+    fun isPalindrome(x: Int): Boolean {
+        if (x < 0) return false
+        var y: Long = x.toLong()
+        var result: Long = 0
+        while (y != 0L) {
+            result = result * 10 + y.rem(10)
+            y /= 10
+        }
+        return result == x.toLong()
+    }
 }

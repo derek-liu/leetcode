@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
     val input = "abba"
-    val result = ReverseInteger().reverse(1534236469)
+    val result = LongestCommonPrefix.longestCommonPrefix(arrayOf("flower", "flow", "flight"))
     println("result $result")
 }
