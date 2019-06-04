@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
     val input = "abba"
-    val result = LongestCommonPrefix.longestCommonPrefix(arrayOf("flower", "flow", "flight"))
+    val result = SearchRange.searchLower(intArrayOf(5, 7, 7, 8, 8, 10), 8)
     println("result $result")
 }
