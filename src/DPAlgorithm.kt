@@ -65,4 +65,18 @@ object DPAlgorithm {
         return s.substring(startIndex, endIndex + 1)
     }
 
+    fun test windGit() {
+        for (j in 0 until s.length) {
+            f[j][j] = true
+            for (i in 0 until j) {
+                f[i][j] = (s[i] == s[j] && j - i < 2) || (s[i] == s[j] && f[i + 1][j - 1] && j > 0)
+                if (f[i][j] && maxLength < (j - i + 1)) {
+                    maxLength = j - i + 1
+                    startIndex = i
+                    endIndex = j
+                }
+            }
+        }
+    }
+
 }
