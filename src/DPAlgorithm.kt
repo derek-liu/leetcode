@@ -65,7 +65,14 @@ object DPAlgorithm {
         return s.substring(startIndex, endIndex + 1)
     }
 
-    fun test windGit() {
+    fun testwindGit(s: String):String {
+        if (s.isEmpty()) return ""
+        var maxLength = 0
+
+        var startIndex = 0
+
+        var endIndex = 0
+        val f = Array(s.length) { BooleanArray(s.length) }
         for (j in 0 until s.length) {
             f[j][j] = true
             for (i in 0 until j) {
@@ -77,6 +84,7 @@ object DPAlgorithm {
                 }
             }
         }
+        return s.substring(startIndex, endIndex + 1)
     }
 
 }
