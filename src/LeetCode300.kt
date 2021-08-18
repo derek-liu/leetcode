@@ -2,8 +2,9 @@ object LeetCode300 {
     fun lengthOfLIS(nums: IntArray): Int {
         var result = 1
         val array = arrayOfNulls<Int>(nums.size)
+        val counts = IntArray(nums.size)
         nums.forEachIndexed { index, i ->
-            result = Math.max(result, longestOfIth(nums, index, array))
+            result = Math.max(result, longestOfIth(nums, counts, index, array))
         }
         return result
     }
@@ -11,7 +12,7 @@ object LeetCode300 {
     /**
      * 到i位置的最长递增子序列的长度
      */
-    fun longestOfIth(array: IntArray, i: Int, dp: Array<Int?>): Int {
+    fun longestOfIth(array: IntArray, counts: IntArray, i: Int, dp: Array<Int?>): Int {
         var result = 1
         if (i !in array.indices) return result
         if (dp[i] != null) {
@@ -19,11 +20,34 @@ object LeetCode300 {
         }
         for (index in 0 until i) {
             if (array[i] > array[index]) {
-                result = Math.max(result, longestOfIth(array, index, dp) + 1)
+//                result = Math.max(result, longestOfIth(array, counts, index, dp) + 1)
+                val length = longestOfIth(array, counts, index, dp)
+                if (result < length + 1) {
+                    result = length + 1
+                    counts[i] = counts[index]
+                } else if (result == length + 1) {
+                    counts[i] += counts[index]
+                }
             }
         }
         dp[i] = result
         return result
+    }
+
+    fun findNumberOfLIS(nums: IntArray): Int {
+        var longestLength = 1
+        val array = arrayOfNulls<Int>(nums.size)
+        val counts = IntArray(nums.size, {1})
+        nums.forEachIndexed { index, i ->
+            longestLength = Math.max(longestLength, longestOfIth(nums, counts, index, array))
+        }
+        var res = 0
+        array.forEachIndexed { index, i ->
+            if (longestLength == i) {
+                res += counts[index]
+            }
+        }
+        return res
     }
 
     /**
