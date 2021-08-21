@@ -1,9 +1,9 @@
 import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
-    val input = intArrayOf(1,2,4,3,5,4,7,2)
+    val input = intArrayOf(10, 9, 2, 5, 3, 7, 101, 18)
     val time = measureTimeMillis {
-        val result = LeetCode300.findNumberOfLIS(input)
+        val result = LeetCode300.lengthOfLIS(input)
         println("result $result")
     }
     println("time $time")

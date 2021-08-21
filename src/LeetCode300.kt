@@ -1,4 +1,24 @@
+import java.util.Arrays
+
 object LeetCode300 {
+
+    //更简洁写法
+    fun lengthOfLIS_Simple(nums: IntArray): Int {
+        val dp = IntArray(nums.size)
+        Arrays.fill(dp, 1)
+        var res = 1
+        for (index in 0..(nums.size - 1)) {
+            for (curIndex in 0..(index - 1)) {
+                if (nums[curIndex] < nums[index]) {
+                    dp[index] = Math.max(dp[index], dp[curIndex] + 1)
+                }
+            }
+            res = Math.max(res, dp[index])
+        }
+        return res
+    }
+
+
     fun lengthOfLIS(nums: IntArray): Int {
         var result = 1
         val array = arrayOfNulls<Int>(nums.size)
@@ -37,7 +57,7 @@ object LeetCode300 {
     fun findNumberOfLIS(nums: IntArray): Int {
         var longestLength = 1
         val array = arrayOfNulls<Int>(nums.size)
-        val counts = IntArray(nums.size, {1})
+        val counts = IntArray(nums.size, { 1 })
         nums.forEachIndexed { index, i ->
             longestLength = Math.max(longestLength, longestOfIth(nums, counts, index, array))
         }
